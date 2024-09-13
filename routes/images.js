@@ -6,7 +6,8 @@ router.get("/", (req, res) => {
   const db = getDb();
 
   let images = [];
-  db.collection("employees")
+  db.collection("images")
+    .find({})
     .forEach((line) => images.push(line))
     .then(() => {
       res.status(200).json(images);

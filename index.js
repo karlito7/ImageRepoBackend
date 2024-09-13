@@ -1,12 +1,12 @@
 const express = require("express");
-const { connectToDb, getDb } = require("./db");
 
 const app = express();
 const cors = require("cors");
 
-app.use(cors());
-app.use(express.json());
+
 const port = 5000;
+
+const { connectToDb, getDb } = require("./db");
 
 connectToDb((err) => {
   if (!err) {
@@ -19,7 +19,8 @@ connectToDb((err) => {
 app.get("/", (req, res) => {
   const db = getDb();
   let dataArray = [];
-  let table = "images";
+  let table = "employees";
+
   db.collection(table)
     .forEach((line) => dataArray.push(line))
     .then(() => {
@@ -27,6 +28,7 @@ app.get("/", (req, res) => {
       console.log("data fetch");
     })
     .catch(() => {
+      console.log("HELo");
       res.status(500).json({ error: "Could not fetch the documents" });
     });
 });
