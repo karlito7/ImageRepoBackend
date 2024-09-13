@@ -1,8 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const bodyParser = require("body-parser");
-const jsonParser = bodyParser.json();
+const { getDb } = require("../db");
 
-router.use(jsonParser);
+//router.use(jsonParser);
 
 module.exports = router;
