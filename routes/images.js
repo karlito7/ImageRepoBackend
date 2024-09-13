@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { getDb } = require("../db");
+const db = require("../db");
 
 router.get("/", (req, res) => {
   const db = getDb();
@@ -15,6 +16,20 @@ router.get("/", (req, res) => {
     })
     .catch(() => {
       res.status(500).json({ error: "Could not fetch the documents" });
+    });
+});
+
+router.post("/new", (req, res) => {
+  const db = getDb();
+  const data = req.body;
+
+  db.collection("images")
+    .insertOne(data)
+    .then((result) => {
+      res.status(200).json(data);
+    })
+    .catch((err) => {
+      res.status(500).json({ err: "Could not add new" });
     });
 });
 
