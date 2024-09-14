@@ -23,9 +23,12 @@ router.post("/new", (req, res) => {
   const db = getDb();
   const data = req.body;
 
+  console.log(data);
+
   db.collection("images")
     .insertOne(data)
     .then((result) => {
+      console.log("data upload");
       res.status(200).json(data);
     })
     .catch((err) => {
