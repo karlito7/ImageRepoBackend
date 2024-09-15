@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const { getDb } = require("../db");
-const db = require("../db");
 
 router.get("/", (req, res) => {
   const db = getDb();
