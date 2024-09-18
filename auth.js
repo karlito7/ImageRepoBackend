@@ -14,6 +14,9 @@ module.exports = {
 
     let response = await bcrypt.compare(password, user.password);
 
+    console.log("res");
+    console.log(response);
+
     if (response) {
       delete user.password;
       let token = jwt.sign(user, "secret", {

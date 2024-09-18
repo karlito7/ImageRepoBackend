@@ -60,14 +60,20 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   const db = getDb();
-  let data = req.body;
+  let data = req.body.data;
+  console.log(data);
+
+  console.log("logging");
 
   try {
     let result = await authenticateUser(data.username, data.password);
+
+    console.log(result);
     if (result) {
       res.status(200).json(result);
     }
   } catch (e) {
+    console.log(e.message);
     res.status(403).json({ error: e.message });
   }
 });
