@@ -66,7 +66,10 @@ router.delete("/:id", (req, res) => {
   if (ObjectId.isValid(imageId)) {
     db.collection("images")
       .deleteOne({ _id: new ObjectId(imageId) })
-      .then((result) => res.status(200).json(result))
+      .then((result) => {
+        console.log("Image Deleted");
+        return res.status(200).json(result);
+      })
       .catch((err) => {
         res.status(500).json({ err: "Could not delete image" });
       });
